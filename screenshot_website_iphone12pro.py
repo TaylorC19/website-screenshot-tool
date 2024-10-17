@@ -24,7 +24,7 @@ def get_all_links(base_url):
 def scroll_and_screenshot(driver, output_folder, url):
     """Scrolls down the page, taking screenshots of each section."""
     driver.get(url)
-    time.sleep(2)  # Allow the page to load
+    time.sleep(5)  # Allow the page to load
 
     # Get the total height of the page
     total_height = driver.execute_script("return document.body.scrollHeight")
