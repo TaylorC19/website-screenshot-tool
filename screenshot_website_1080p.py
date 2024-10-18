@@ -45,7 +45,7 @@ def scroll_and_screenshot(driver, output_folder, url):
         # Scroll down
         scroll_position += scroll_amount
         driver.execute_script(f"window.scrollTo(0, {scroll_position});")
-        time.sleep(1)  # Pause to allow animations and loading
+        time.sleep(1.5)  # Pause to allow animations and loading
         screenshot_count += 1
 
 def main(base_url):
