@@ -42,3 +42,11 @@ Execute the following command to start the application, replacing the name with 
 ```
 python screenshot_website_1080p.py
 ```
+
+## Creating an executable
+This program uses pyinstalled to bundle and create an executable file for users.
+
+To create the executables, run the following command in the terminal
+``` bash
+pyinstaller --onefile master.py
+```
