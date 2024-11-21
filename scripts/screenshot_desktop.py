@@ -106,31 +106,6 @@ def scroll_and_screenshot(driver, output_folder, url):
         time.sleep(1.5) # allow scroll animations to finish
         screenshot_count += 1
 
-def main(base_url):
-    output_folder = "screenshots-1080p"
-    os.makedirs(output_folder, exist_ok=True)
-
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--ignore-certificate-errors")
-    chrome_options.add_argument("--allow-insecure-localhost")
-    chrome_options.add_argument("--window-size=1920,1080")  # Set window size for 1080p screen
-
-    chrome_options.set_capability('goog:loggingPrefs', {'performance': 'ALL'})
-
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
-
-    links = get_all_links(base_url)
-    total_links = len(links)
-
-    for index, link in enumerate(links):
-        scroll_and_screenshot(driver, output_folder, link)
-
-        percentage_complete = (index + 1) / total_links * 100
-        print(f"Progress: {percentage_complete:.2f}% - Processed: {index + 1}/{total_links} links")
-
-    driver.quit()
-    print("All screenshots have been taken.")
-
 def main_desktop(base_url):
     output_folder = "screenshots-1080p"
     os.makedirs(output_folder, exist_ok=True)
