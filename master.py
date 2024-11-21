@@ -1,3 +1,4 @@
+import threading
 from scripts import screenshot_desktop, screenshot_iphone12pro
 
 def main():
@@ -17,8 +18,16 @@ def main():
     elif choice == '2':
         screenshot_iphone12pro.main_iphone(website_url)
     elif choice == '3':
-        screenshot_desktop.main_desktop(website_url)
-        screenshot_iphone12pro.main_iphone(website_url)
+        desktop_thread = threading.Thread(target=screenshot_desktop.main_desktop, args=(website_url,))
+        iphone_thread = threading.Thread(target=screenshot_iphone12pro.main_iphone, args=(website_url,))
+
+        # Start the threads
+        desktop_thread.start()
+        iphone_thread.start()
+        
+        # Wait for both threads to finish
+        desktop_thread.join()
+        iphone_thread.join()
     else:
         print("Invalid choice. Please run the script again and select 1, 2, or 3.")
 
