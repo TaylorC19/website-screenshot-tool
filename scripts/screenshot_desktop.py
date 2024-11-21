@@ -106,7 +106,7 @@ def scroll_and_screenshot(driver, output_folder, url):
         time.sleep(1.5) # allow scroll animations to finish
         screenshot_count += 1
 
-def main(base_url):
+def main_desktop(base_url):
     output_folder = "screenshots-1080p"
     os.makedirs(output_folder, exist_ok=True)
 
@@ -130,7 +130,3 @@ def main(base_url):
 
     driver.quit()
     print("All screenshots have been taken.")
-
-if __name__ == "__main__":
-    website_url = input("Enter the website URL: ")
-    main(website_url)
