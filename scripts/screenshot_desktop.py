@@ -81,8 +81,10 @@ def scroll_and_screenshot(driver, output_folder, url):
     driver.get(url)
     time.sleep(5)  
 
-    if not wait_for_images_to_load(driver):
+    if not wait_for_network_idle(driver):
         print(f"Warning: Initial images did not fully load on {url}")
+    # if not wait_for_images_to_load(driver):
+    #     print(f"Warning: Initial images did not fully load on {url}")
 
     total_height = driver.execute_script("return document.body.scrollHeight")
     viewport_height = 1080  # Set viewport height to 1080 pixels for 1080p display
@@ -100,8 +102,10 @@ def scroll_and_screenshot(driver, output_folder, url):
         scroll_position += scroll_amount
         driver.execute_script(f"window.scrollTo(0, {scroll_position});")
 
-        if not wait_for_images_to_load(driver):
+        if not wait_for_network_idle(driver):
             print(f"Warning: Lazy-loaded images did not fully load after scrolling on {url}")
+        # if not wait_for_images_to_load(driver):
+        #     print(f"Warning: Lazy-loaded images did not fully load after scrolling on {url}")
 
         time.sleep(1.5) # allow scroll animations to finish
         screenshot_count += 1
@@ -112,6 +116,7 @@ def main_desktop(base_url):
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--ignore-certificate-errors")
+    chrome_options.add_argument("user-agent=MyTestBot/1.0")
     chrome_options.add_argument("--allow-insecure-localhost")
     chrome_options.add_argument("--window-size=1920,1080")  # Set window size for 1080p screen
 
